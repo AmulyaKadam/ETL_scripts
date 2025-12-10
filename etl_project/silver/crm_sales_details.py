@@ -19,7 +19,7 @@ def run(spark):
     status = 'SUCCESS'
 
     try:
-        logging.info(f"Starting Task {task_name}...")
+        logging.info(f"Starting Task {task}...")
 
 
         logging.info(f"Reading Bronze data...")
@@ -43,7 +43,7 @@ def run(spark):
             valid_date('sls_ship_dt').alias('sls_ship_dt'),
             valid_date('sls_due_dt').alias('sls_due_dt'),
 
-     
+            
             when(
                 col('sls_sales').isNull() |
                 (col('sls_sales') <= 0) |
@@ -70,8 +70,7 @@ def run(spark):
     end = datetime.now()
     logging.info(f"Task {task} completed in {end-start} seconds")
     
-    return : 
-        {
+    return {
             'task_name': task,
             'layer': layer,
             'status': status,
@@ -80,4 +79,4 @@ def run(spark):
             'end_time': end,
             'duration_seconds': (end-start).total_seconds(),
             'error_message': error_message
-        }
+          }
