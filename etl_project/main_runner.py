@@ -1,4 +1,4 @@
-# Databricks notebook source
+
 import sys
 import os
 import logging
@@ -8,16 +8,16 @@ from datetime import datetime
 if "__file__" in globals():
     project_root = os.path.dirname(os.path.abspath(__file__))
 else:
-    project_root = os.getcwd()  # Databricks Repo / Job environment
+    project_root = os.getcwd()  
 
 if project_root not in sys.path:
     sys.path.append(project_root)
 
-# imports
+
 
 from framework.audit import write_audit_log
 
-# silver
+
 from silver.crm_prd_info import run as run_crm_prd_info
 from silver.crm_customers import run as run_crm_customers
 from silver.crm_sales import run as run_crm_sales
@@ -25,12 +25,10 @@ from silver.erp_items import run as run_erp_items
 from silver.erp_customers import run as run_erp_customers
 from silver.erp_sales import run as run_erp_sales
 
-# gold
 from gold.sales_summary import run as run_sales_summary
 from gold.customer_profile import run as run_customer_profile
 from gold.product_performance import run as run_product_performance
 
-# ---- logging config ----
 logging.basicConfig(level=logging.INFO,
                     format="%(asctime)s %(levelname)s %(message)s")
 logger = logging.getLogger("main_runner")
