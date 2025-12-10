@@ -19,7 +19,7 @@ def run(spark):
     status = 'SUCCESS'
 
     try:
-        logging.info(f"Starting Task {task_name}...")
+        logging.info(f"Starting Task {task}...")
 
 
         logging.info(f"Reading Silver data...")
@@ -65,8 +65,7 @@ def run(spark):
     end = datetime.now()
     logging.info(f"Task {task} completed in {end-start} seconds")
     
-    return : 
-        {
+    return {
             'task_name': task,
             'layer': layer,
             'status': status,
@@ -75,4 +74,4 @@ def run(spark):
             'end_time': end,
             'duration_seconds': (end-start).total_seconds(),
             'error_message': error_message
-        }
+           }
