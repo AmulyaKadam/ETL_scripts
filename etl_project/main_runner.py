@@ -5,7 +5,11 @@ import logging
 from datetime import datetime
 
 
-project_root = os.path.dirname(os.path.abspath(__file__))
+if "__file__" in globals():
+    project_root = os.path.dirname(os.path.abspath(__file__))
+else:
+    project_root = os.getcwd()  # Databricks Repo / Job environment
+
 if project_root not in sys.path:
     sys.path.append(project_root)
 
