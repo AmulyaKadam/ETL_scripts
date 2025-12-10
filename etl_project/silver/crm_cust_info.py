@@ -1,4 +1,3 @@
-# Databricks notebook source
 from pyspark.sql.functions import *
 from pyspark.sql.types import *
 from pyspark.sql.window import Window
@@ -69,10 +68,3 @@ def run(spark):
             'duration_seconds': (end-start).total_seconds(),
             'error_message': error_message
         }
-
-# COMMAND ----------
-
-
-
-# COMMAND ----------
-
