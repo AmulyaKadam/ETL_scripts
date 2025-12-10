@@ -1,4 +1,4 @@
-# Databricks notebook source
+
 from pyspark.sql.functions import *
 from pyspark.sql.types import *
 from pyspark.sql.window import Window
@@ -43,7 +43,7 @@ def run(spark):
             valid_date('sls_ship_dt').alias('sls_ship_dt'),
             valid_date('sls_due_dt').alias('sls_due_dt'),
 
-            # Recalculate sales if missing or incorrect
+     
             when(
                 col('sls_sales').isNull() |
                 (col('sls_sales') <= 0) |
