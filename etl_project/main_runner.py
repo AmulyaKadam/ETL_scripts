@@ -15,16 +15,16 @@ from framework.audit import write_audit_log
 
 # silver
 from silver.crm_prd_info import run as run_crm_prd_info
-from silver.crm_customers import run as run_crm_customers
-from silver.crm_sales import run as run_crm_sales
-from silver.erp_items import run as run_erp_items
-from silver.erp_customers import run as run_erp_customers
-from silver.erp_sales import run as run_erp_sales
+from silver.crm_cust_info import run as run_crm_cust_info
+from silver.crm_sales_details import run as run_crm_sales_details
+from silver.erp_cust_az12 import run as run_erp_cust_az12
+from silver.erp_loc_a101 import run as run_erp_loc_a101
+from silver.erp_px_cat_g1v2 import run as run_erp_px_cat_g1v2
 
 # gold
-from gold.sales_summary import run as run_sales_summary
-from gold.customer_profile import run as run_customer_profile
-from gold.product_performance import run as run_product_performance
+from gold.dim_customers import run as run_dim_customers
+from gold.dim_products import run as run_dim_products
+from gold.fact_sales import run as run_fact_sales
 
 # ---- logging config ----
 logging.basicConfig(level=logging.INFO,
@@ -37,14 +37,14 @@ def run_all_etl(spark):
 
     steps = [
         run_crm_prd_info,
-        run_crm_customers,
-        run_crm_sales,
-        run_erp_items,
-        run_erp_customers,
-        run_erp_sales,
-        run_sales_summary,
-        run_customer_profile,
-        run_product_performance,
+        run_crm_cust_info,
+        run_crm_sales_details,
+        run_erp_cust_az12,
+        run_erp_loc_a101,
+        run_erp_px_cat_g1v2,
+        run_dim_customers,
+        run_dim_products,
+        run_fact_sales,
     ]
 
   
