@@ -10,6 +10,11 @@ logging.basicConfig(level=logging.INFO,
                     format="%(asctime)s %(levelname)s %(message)s")
 logger = logging.getLogger("crm_sales_details")
 
+def valid_date(colname):
+    return when((col(colname)>0) & (length(col(colname)) == 8)\
+            , to_date(col(colname), 'yyyyMMdd'))\
+                .otherwise(None)
+
 def run(spark):
     task = 'silver.crm_sales_details'
     layer = 'silver'
