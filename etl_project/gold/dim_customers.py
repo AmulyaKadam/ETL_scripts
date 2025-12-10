@@ -53,8 +53,8 @@ def run(spark):
         rows_processed = df_final.count()
 
         logging.info('Writing data to Gold layer...')
-        df_final.write.format('parquet').mode('overwrite')\
-            .option('path',"/Volumes/workspace/default/mydata/gold/dim_customers.parquet")\
+        df_final.write.format('delta').mode('overwrite')\
+            .option('path',"/Volumes/workspace/default/mydata/gold/dim_customers")\
                 .save()
 
     except Exception as e:
