@@ -46,8 +46,8 @@ def run(spark):
         rows_processed = clean_df.count()
 
         logging.info('Writing data to Silver layer...')
-        clean_df.write.format('parquet').mode('overwrite')\
-            .option('path',"/Volumes/workspace/default/mydata/silver/source_crm/crm_cust_info.parquet")\
+        clean_df.write.format('delta').mode('overwrite')\
+            .option('path',"/Volumes/workspace/default/mydata/silver/source_crm/crm_cust_info")\
                 .save()
 
     except Exception as e:
