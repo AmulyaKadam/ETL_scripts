@@ -1,4 +1,4 @@
-# Databricks notebook source
+
 from pyspark.sql.types import *
 from datetime import datetime
 
