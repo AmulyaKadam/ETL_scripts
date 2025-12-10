@@ -23,11 +23,11 @@ def run(spark):
 
 
         logging.info(f"Reading Silver data...")
-        crm_sales = spark.read.format("parquet").load("/Volumes/workspace/default/mydata/silver/source_crm/crm_sales_details.parquet")
+        crm_sales = spark.read.format("delta").load("/Volumes/workspace/default/mydata/silver/source_crm/crm_sales_details")
         
         logging.info(f"Reading gold dimentional data...")
-        dim_prd = spark.read.format("parquet").load("/Volumes/workspace/default/mydata/gold/dim_products.parquet")
-        dim_cst = spark.read.format("parquet").load("/Volumes/workspace/default/mydata/gold/dim_customers.parquet")
+        dim_prd = spark.read.format("delta").load("/Volumes/workspace/default/mydata/gold/dim_products")
+        dim_cst = spark.read.format("delta").load("/Volumes/workspace/default/mydata/gold/dim_customers")
 
 
         logging.info('Applying Trasnformations...')
@@ -50,8 +50,8 @@ def run(spark):
         rows_processed = df_final.count()
 
         logging.info('Writing data to Gold layer...')
-        df_final.write.format('parquet').mode('overwrite')\
-            .option('path',"/Volumes/workspace/default/mydata/gold/fact_sales.parquet")\
+        df_final.write.format('delta').mode('overwrite')\
+            .option('path',"/Volumes/workspace/default/mydata/gold/fact_sales")\
                 .save()
 
     except Exception as e:
