@@ -26,7 +26,7 @@ def run(spark):
         df = spark.read.format('csv')\
                 .option("header", "true")\
                     .option("inferSchema", "true")\
-                        .load("abfss://source@awstorageamulya.dfs.core.windows.net/source_erp/CUST_AZ12.csv")
+                        .load("abfss://bronze@awstorageamulya.dfs.core.windows.net/source_erp/CUST_AZ12.csv")
 
 
         logging.info('Cleaning data...')
