@@ -26,7 +26,7 @@ def run(spark):
         df = spark.read.format('csv')\
             .option("header", "true")\
                 .option("inferSchema", "true")\
-                    .load("/Volumes/workspace/default/source_crm/source_crm/cust_info.csv")  
+                    .load("abfss://source@awstorageamulya.dfs.core.windows.net/source_crm/cust_info.csv")  
 
         logging.info('Filtering data...')
         df_filtered = df.filter(col("cst_id") > 0)
@@ -47,7 +47,7 @@ def run(spark):
 
         logging.info('Writing data to Silver layer...')
         clean_df.write.format('delta').mode('overwrite')\
-            .option('path',"/Volumes/workspace/default/mydata/silver/source_crm/crm_cust_info")\
+            .option('path',"abfss://silver@awstorageamulya.dfs.core.windows.net/source_crm/crm_cust_info")\
                 .save()
 
     except Exception as e:
