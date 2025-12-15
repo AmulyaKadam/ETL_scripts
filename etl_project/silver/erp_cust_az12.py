@@ -26,7 +26,7 @@ def run(spark):
         df = spark.read.format('csv')\
                 .option("header", "true")\
                     .option("inferSchema", "true")\
-                        .load("/Volumes/workspace/default/source_erp/source_erp/CUST_AZ12.csv")
+                        .load("abfss://source@awstorageamulya.dfs.core.windows.net/source_erp/CUST_AZ12.csv")
 
 
         logging.info('Cleaning data...')
@@ -52,7 +52,7 @@ def run(spark):
 
         logging.info('Writing data to Silver layer...')
         df_clean.write.format('delta').mode('overwrite')\
-            .option('path',"/Volumes/workspace/default/mydata/silver/source_erp/erp_cust_az12")\
+            .option('path',"abfss://silver@awstorageamulya.dfs.core.windows.net/source_erp/erp_cust_az12")\
                 .save()
 
     except Exception as e:
