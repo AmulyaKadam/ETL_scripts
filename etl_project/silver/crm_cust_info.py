@@ -26,7 +26,7 @@ def run(spark):
         df = spark.read.format('csv')\
             .option("header", "true")\
                 .option("inferSchema", "true")\
-                    .load("abfss://source@awstorageamulya.dfs.core.windows.net/source_crm/cust_info.csv")  
+                    .load("abfss://bronze@awstorageamulya.dfs.core.windows.net/source_crm/cust_info.csv")  
 
         logging.info('Filtering data...')
         df_filtered = df.filter(col("cst_id") > 0)
