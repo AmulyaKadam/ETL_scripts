@@ -12,6 +12,7 @@ if repo_root not in sys.path:
 # imports
 
 from framework.audit import write_audit_log
+from config.storage_config import configure_adls
 
 # silver
 from silver.crm_prd_info import run as run_crm_prd_info
