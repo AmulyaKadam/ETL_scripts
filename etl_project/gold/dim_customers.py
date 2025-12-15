@@ -23,9 +23,9 @@ def run(spark):
 
 
         logging.info(f"Reading Silver data...")
-        crm_cust = spark.read.format("delta").load("/Volumes/workspace/default/mydata/silver/source_crm/crm_cust_info")
-        erp_cust = spark.read.format("delta").load("/Volumes/workspace/default/mydata/silver/source_erp/erp_cust_az12")
-        erp_loc  = spark.read.format("delta").load("/Volumes/workspace/default/mydata/silver/source_erp/erp_loc_a101")
+        crm_cust = spark.read.format("delta").load("abfss://silver@awstorageamulya.dfs.core.windows.net/source_crm/crm_cust_info")
+        erp_cust = spark.read.format("delta").load("abfss://silver@awstorageamulya.dfs.core.windows.net/source_erp/erp_cust_az12")
+        erp_loc  = spark.read.format("delta").load("abfss://silver@awstorageamulya.dfs.core.windows.net/source_erp/erp_loc_a101")
 
 
         logging.info('Applying Trasnformations...')
