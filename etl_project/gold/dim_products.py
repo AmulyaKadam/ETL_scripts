@@ -23,8 +23,8 @@ def run(spark):
 
 
         logging.info(f"Reading Silver data...")
-        crm_prd = spark.read.format("delta").load("/Volumes/workspace/default/mydata/silver/source_crm/crm_prd_info")
-        erp_cat = spark.read.format("delta").load("/Volumes/workspace/default/mydata/silver/source_erp/erp_px_cat_g1v2")
+        crm_prd = spark.read.format("delta").load("abfss://silver@awstorageamulya.dfs.core.windows.net/source_crm/crm_prd_info")
+        erp_cat = spark.read.format("delta").load("abfss://silver@awstorageamulya.dfs.core.windows.net/source_erp/erp_px_cat_g1v2")
 
 
         logging.info('Applying Trasnformations...')
