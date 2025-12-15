@@ -34,7 +34,7 @@ logger = logging.getLogger("main_runner")
 
 def run_all_etl(spark):
     logger.info("Starting ETL pipeline")
-
+    configure_adls(spark)
 
     steps = [
         run_crm_prd_info,
