@@ -26,7 +26,7 @@ def run(spark):
         df = spark.read.format('csv')\
             .option("header", "true")\
                 .option("inferSchema", "true")\
-                    .load("abfss://source@awstorageamulya.dfs.core.windows.net/source_crm/prd_info.csv")  
+                    .load("abfss://bronze@awstorageamulya.dfs.core.windows.net/source_crm/prd_info.csv")  
 
         logging.info('Cleaning data...')
         window_spec = Window.partitionBy('prd_key').orderBy(col('prd_start_dt'))
