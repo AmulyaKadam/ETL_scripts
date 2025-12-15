@@ -23,11 +23,11 @@ def run(spark):
 
 
         logging.info(f"Reading Silver data...")
-        crm_sales = spark.read.format("delta").load("/Volumes/workspace/default/mydata/silver/source_crm/crm_sales_details")
+        crm_sales = spark.read.format("delta").load("abfss://silver@awstorageamulya.dfs.core.windows.net/source_crm/crm_sales_details")
         
         logging.info(f"Reading gold dimentional data...")
-        dim_prd = spark.read.format("delta").load("/Volumes/workspace/default/mydata/gold/dim_products")
-        dim_cst = spark.read.format("delta").load("/Volumes/workspace/default/mydata/gold/dim_customers")
+        dim_prd = spark.read.format("delta").load("abfss://gold@awstorageamulya.dfs.core.windows.net/dim_products")
+        dim_cst = spark.read.format("delta").load("abfss://gold@awstorageamulya.dfs.core.windows.net/dim_customers")
 
 
         logging.info('Applying Trasnformations...')
@@ -51,7 +51,7 @@ def run(spark):
 
         logging.info('Writing data to Gold layer...')
         df_final.write.format('delta').mode('overwrite')\
-            .option('path',"/Volumes/workspace/default/mydata/gold/fact_sales")\
+            .option('path',"abfss://gold@awstorageamulya.dfs.core.windows.net/fact_sales")\
                 .save()
 
     except Exception as e:
