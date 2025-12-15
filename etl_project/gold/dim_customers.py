@@ -54,7 +54,7 @@ def run(spark):
 
         logging.info('Writing data to Gold layer...')
         df_final.write.format('delta').mode('overwrite')\
-            .option('path',"/Volumes/workspace/default/mydata/gold/dim_customers")\
+            .option('path',"abfss://gold@awstorageamulya.dfs.core.windows.net/dim_customers")\
                 .save()
 
     except Exception as e:
