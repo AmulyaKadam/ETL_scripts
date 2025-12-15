@@ -8,12 +8,12 @@ def configure_adls(spark):
       - adls_tenant_id
     Replace scope/key names and account name as necessary.
     """
-    adls_account_name = "mydatalake"  
+    adls_account_name = "awstorageamulya"  
 
     
-    client_id = dbutils.secrets.get(scope="my_scope", key="adls_client_id")
-    client_secret = dbutils.secrets.get(scope="my_scope", key="adls_client_secret")
-    tenant_id = dbutils.secrets.get(scope="my_scope", key="adls_tenant_id")
+    client_id = dbutils.secrets.get(scope="my_scope", key="adls-client-id")
+    client_secret = dbutils.secrets.get(scope="my_scope", key="adls-client-secret")
+    tenant_id = dbutils.secrets.get(scope="my_scope", key="adls-tenant-id")
 
     configs = {
         f"fs.azure.account.auth.type.{adls_account_name}.dfs.core.windows.net": "OAuth",
@@ -27,3 +27,4 @@ def configure_adls(spark):
 
     for k, v in configs.items():
         spark.conf.set(k, v)
+
