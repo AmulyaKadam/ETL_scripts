@@ -34,5 +34,5 @@ def write_audit_log(spark, record):
     df.write.format("parquet") \
             .mode("append") \
             .option("header", "true")\
-            .option('path', "/Volumes/workspace/default/mydata/audit_logs/etl_logs") \
+            .option('path', "abfss://audit@awstorageamulya.dfs.core.windows.net/etl_audit") \
             .save()
