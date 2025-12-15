@@ -31,7 +31,7 @@ def run(spark):
         df = spark.read.format('csv')\
                 .option("header", "true")\
                     .option("inferSchema", "true")\
-                        .load("/Volumes/workspace/default/source_crm/source_crm/sales_details.csv")
+                        .load("abfss://source@awstorageamulya.dfs.core.windows.net/source_crm/sales_details.csv")
 
         logging.info('Cleaning data...')
         df.fixed = df.withColumn('fixed_price', when(col('sls_price').isNull() | (col('sls_price') <=0) \
@@ -64,7 +64,7 @@ def run(spark):
 
         logging.info('Writing data to Silver layer...')
         df_final.write.format('delta').mode('overwrite')\
-            .option('path',"/Volumes/workspace/default/mydata/silver/source_crm/crm_sales_details")\
+            .option('path',"abfss://silver@awstorageamulya.dfs.core.windows.net/source_crm/crm_sales_details")\
                 .save()
 
     except Exception as e:
