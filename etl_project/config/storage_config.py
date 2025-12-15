@@ -1,5 +1,5 @@
 
-def configure_adls(spark):
+def configure_adls(spark, dbutils):
     """
     Configure spark.conf for ADLS OAuth access using dbutils.secrets.
     Assumes a Databricks secret scope named 'my_scope' with keys:
@@ -27,4 +27,5 @@ def configure_adls(spark):
 
     for k, v in configs.items():
         spark.conf.set(k, v)
+
 
